@@ -1,0 +1,87 @@
+body{
+	background-color: #f2f2f2;
+	font-family: ff-clan-web-pro, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.textCenter{
+	text-align: center;
+}
+a{ 
+text-decoration:none;
+color: #11939a
+}
+
+.center {
+    margin: auto;
+    width: 50%;
+    
+    padding: 70px 0;
+}
+
+input[type=button], input[type=submit], input[type=reset] {
+    background-color: #11939a;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+input[type=submit]:hover {
+    background-color: #11939a;
+}
+
+input[type=text], input[type=password], input[type=email], input[type=submit] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.two-col {
+    overflow: hidden;/* Makes this div contain its floats */
+}
+
+.col1 {
+    float: left;
+    width: 50%;
+}
+
+.col2 {
+    float: right;
+    width: 48%;
+}
+
+.two-col label {
+    display: block;
+}
+
+.signUp{
+	font-size: 24px;
+	font-weight: 400;
+	line-height: 100%;
+	margin-bottom: 10px;
+}
+
+.slogan{
+	font-size: 22px;
+	font-weight: 350;
+	line-height: 150%;
+	margin-bottom: 10px;
+}
+
+.svg{
+	width: 70px;
+	fill: #ffffff;
+	margin-left: -50px;
+	padding: 30px 25px;
+	top: 12px;
+    background-color: #000000;
+    vertical-align: middle;
+    text-align: center;
+    left: 50%;
+    position: absolute;
+}

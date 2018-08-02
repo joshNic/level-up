@@ -4,6 +4,7 @@ body{
 }
 .textCenter{
 	text-align: center;
+	
 }
 a{ 
 text-decoration:none;
@@ -73,15 +74,22 @@ input[type=text], input[type=password], input[type=email], input[type=submit] {
 	margin-bottom: 10px;
 }
 
-.svg{
+/*.svg{
 	width: 70px;
-	fill: #ffffff;
 	margin-left: -50px;
 	padding: 30px 25px;
-	top: 12px;
-    background-color: #000000;
+	top: -60px;
     vertical-align: middle;
     text-align: center;
-    left: 50%;
+    left: 30%;
     position: absolute;
+}*/
+rect{
+	fill:black;
+	stroke:black;
+	opacity:10;
+}
+text{
+	font-size:35px;
+	fill: #ffffff;
 }

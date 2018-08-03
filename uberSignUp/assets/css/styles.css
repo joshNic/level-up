@@ -78,15 +78,15 @@ input[type=email]{
 
 .signUp {
     font-size: 24px;
-    font-weight: 400;
+    font-weight: lighter;
     line-height: 100%;
     margin-bottom: 10px;
 }
 
 .slogan {
     font-size: 22px;
-    /*color:#11939a;*/
-    font-weight: 300%;
+    color:#808080;
+    font-weight: 100;
     line-height: 150%;
     margin-bottom: 10px;
 }

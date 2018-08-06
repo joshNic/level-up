@@ -5,7 +5,6 @@ import re
 
 UBER_USERS = []
 
-
 class SignUp(object):
     """
     This class registers a new uber driver the our list
@@ -30,7 +29,7 @@ class SignUp(object):
 
 class Authentication(SignUp):
     """This class checks and verifies the user data supplied before
-    the user is registered
+    the user is registered it takes SignUp as parent class
     """
 
     def __init__(self, firstName, lastName,
@@ -126,12 +125,16 @@ class Authentication(SignUp):
                 print("phoneNumber all good")
                 return phoneNumber
 
+if __name__ == '__main__':
+    
+    # Get user input
+    firstName = input("Enter first name: ")
+    lastName = input("Enter last name: ")
+    phoneNumber = input("Enter phone number: ")
+    email = input("Enter email: ")
+    password = input("Enter password: ")
 
-firstName = input("Enter first name: ")
-lastName = input("Enter last name: ")
-phoneNumber = input("Enter phone number: ")
-email = input("Enter email: ")
-password = input("Enter password: ")
-
-test = Authentication(firstName, lastName, phoneNumber, email, password)
-test.verify()
+    # Create Authentication object
+    test = Authentication(firstName, lastName, phoneNumber, email, password)
+    # call the verify method on the data supplied
+    test.verify()

@@ -7,7 +7,7 @@ UBER_USERS = []
 
 class SignUp(object):
     """
-    This class registers a new uber driver the our list
+    This class registers a new uber driver to our UBER_USERS list
     """
     def __init__(self, firstName, lastName, phoneNumber, email, password):
         self.firstName = firstName
@@ -39,7 +39,7 @@ class Authentication(SignUp):
         self.firstName = Authentication.check_name(firstName)
         self.lastName = Authentication.check_name(lastName)
         self.phoneNumber = Authentication.check_phone_number(phoneNumber)
-        self.email = Authentication.check_email_contains(email, "@.")
+        self.email = Authentication.check_email_contains(email)
         self.password = Authentication.check_password(password)
 
     # Method to verify user supplied data
@@ -80,25 +80,16 @@ class Authentication(SignUp):
 
     @staticmethod
     # Method that checks email address supplied by the user
-    def check_email_contains(email_address, characters, min_length=6):
-        for character in characters:
-
-            # Check if a certain character is in the supplied email address
-            if character not in email_address:
-                print(
-                    "Your email address must have '{}' in it\nPlease write your email address again: ".format(character))
-                break
-
-            # Check if email is of appropriet length
-            elif len(email_address) <= min_length:
-                print(
-                    "Your email address is too short\nPlease write your email address again: ")
-                break
-
-            # if all criteria is met then return email object
-            else:
-                print("Email all good")
-                return email_address
+    def check_email_contains(email):
+        if len(email) < 6:
+            print("email is too short try agin")
+        elif "@" not in email:
+            print("Email must contain @ character try again")
+        elif "." not in email:
+            print("Email must conatin . character try again")
+        else:
+            print("All good")
+            return email
 
     @staticmethod
     # Method to check supplied password

@@ -87,6 +87,10 @@ class Authentication(SignUp):
             print("Email must contain @ character try again")
         elif "." not in email:
             print("Email must conatin . character try again")
+        elif email.startswith("@") or email.startswith("."):
+            print("Email can not start with @ or . character try agin")
+        elif "@." or ".@" in email:
+            print("Email can not conatin @ and . next to each other please try agin")
         else:
             print("All good")
             return email

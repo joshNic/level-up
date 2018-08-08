@@ -15,11 +15,12 @@ class SignUp(object):
         self.phoneNumber = phoneNumber
         self.email = email
         self.password = password
+        self.uberUsers = UBER_USERS
 
     def register(self):
 
         # add new driver to the list if all criterion is met
-        UBER_USERS.append({
+        self.uberUsers.append({
             "firstName": self.firstName, "lastName": self.lastName,
             "phoneNumber": self.phoneNumber, "email": self.email,
             "password": self.password})
@@ -48,7 +49,7 @@ class Authentication(SignUp):
         if self.firstName and self.lastName and self.phoneNumber and self.email and self.password:
 
             # check if the phone number or email supplied matches any data already in the list
-            user = [rider for rider in UBER_USERS if rider.get(
+            user = [rider for rider in self.uberUsers if rider.get(
                 "email") == self.email or rider.get("phoneNumber") == self.phoneNumber]
             if user:
                 print("Sorry rider already exixts")
@@ -89,10 +90,12 @@ class Authentication(SignUp):
             print("Email must conatin . character try again")
         elif email.startswith("@") or email.startswith("."):
             print("Email can not start with @ or . character try agin")
-        elif "@." or ".@" in email:
+        elif "@." in email:
+            print("Email can not conatin @ and . next to each other please try agin")
+        elif ".@" in email:
             print("Email can not conatin @ and . next to each other please try agin")
         else:
-            print("All good")
+            print("Email all good")
             return email
 
     @staticmethod

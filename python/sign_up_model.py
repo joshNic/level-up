@@ -7,7 +7,7 @@ UBER_USERS = []
 
 class SignUp(object):
     """
-    This class registers a new uber driver the our list
+    This class registers a new uber driver to our UBER_USERS list
     """
     def __init__(self, firstName, lastName, phoneNumber, email, password):
         self.firstName = firstName
@@ -15,11 +15,12 @@ class SignUp(object):
         self.phoneNumber = phoneNumber
         self.email = email
         self.password = password
+        self.uberUsers = UBER_USERS
 
     def register(self):
 
         # add new driver to the list if all criterion is met
-        UBER_USERS.append({
+        self.uberUsers.append({
             "firstName": self.firstName, "lastName": self.lastName,
             "phoneNumber": self.phoneNumber, "email": self.email,
             "password": self.password})
@@ -39,7 +40,7 @@ class Authentication(SignUp):
         self.firstName = Authentication.check_name(firstName)
         self.lastName = Authentication.check_name(lastName)
         self.phoneNumber = Authentication.check_phone_number(phoneNumber)
-        self.email = Authentication.check_email_contains(email, "@.")
+        self.email = Authentication.check_email_contains(email)
         self.password = Authentication.check_password(password)
 
     # Method to verify user supplied data
@@ -48,7 +49,7 @@ class Authentication(SignUp):
         if self.firstName and self.lastName and self.phoneNumber and self.email and self.password:
 
             # check if the phone number or email supplied matches any data already in the list
-            user = [rider for rider in UBER_USERS if rider.get(
+            user = [rider for rider in self.uberUsers if rider.get(
                 "email") == self.email or rider.get("phoneNumber") == self.phoneNumber]
             if user:
                 print("Sorry rider already exixts")
@@ -80,25 +81,22 @@ class Authentication(SignUp):
 
     @staticmethod
     # Method that checks email address supplied by the user
-    def check_email_contains(email_address, characters, min_length=6):
-        for character in characters:
-
-            # Check if a certain character is in the supplied email address
-            if character not in email_address:
-                print(
-                    "Your email address must have '{}' in it\nPlease write your email address again: ".format(character))
-                break
-
-            # Check if email is of appropriet length
-            elif len(email_address) <= min_length:
-                print(
-                    "Your email address is too short\nPlease write your email address again: ")
-                break
-
-            # if all criteria is met then return email object
-            else:
-                print("Email all good")
-                return email_address
+    def check_email_contains(email):
+        if len(email) < 6:
+            print("email is too short try agin")
+        elif "@" not in email:
+            print("Email must contain @ character try again")
+        elif "." not in email:
+            print("Email must conatin . character try again")
+        elif email.startswith("@") or email.startswith("."):
+            print("Email can not start with @ or . character try agin")
+        elif "@." in email:
+            print("Email can not conatin @ and . next to each other please try agin")
+        elif ".@" in email:
+            print("Email can not conatin @ and . next to each other please try agin")
+        else:
+            print("Email all good")
+            return email
 
     @staticmethod
     # Method to check supplied password

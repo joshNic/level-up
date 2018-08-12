@@ -1,4 +1,5 @@
 import unittest
+import re
 from sign_up_model import SignUp
 from sign_up_model import Authentication
 
@@ -20,11 +21,8 @@ class TestSignUp(unittest.TestCase):
     def test_register(self):
         self.register_user.register()
         for i, rider in enumerate(self.uberUsers):
-            self.assertEqual(rider.get(i[0]), "Joshua")
-        # user = [rider for rider in self.uberUsers if rider.get("lastName") == self.lastName]
-        # self.assertFalse(user)
-    # def tearDown(self):
-    #     self.register_user
+            self.assertIn(rider.get(i[0]) == self.firstName, self.uberUsers)
+    
             
 class TestAuthentication(unittest.TestCase):
         def setUp(self):
@@ -39,9 +37,14 @@ class TestAuthentication(unittest.TestCase):
             self.uberUsers = []
             self.authenticate_user = Authentication(self.firstName, self.lastName,
                                         self.phoneNumber, self.email, self.password)
+            self.authenticate_user.register()
             
         def test_check_email_contains(self):
-            pass
+            self.assertIn("@", self.email)
+            self.assertIn(".", self.email)
+            self.assertNotIn("@.", self.email)
+            self.assertNotIn(".@", self.email)
+            self.assertGreater(len(self.email), 6)
         
         def test_verify(self):
             self.assertTrue(self.firstName)
@@ -49,15 +52,25 @@ class TestAuthentication(unittest.TestCase):
             self.assertTrue(self.phoneNumber)
             self.assertTrue(self.email)
             self.assertTrue(self.password)
+
+            for i, rider in enumerate(self.uberUsers):
+                self.assertIsInstance(rider.get(i[3]) == self.email and rider.get(
+                    i[2]) == self.phoneNumber, self.uberUsers)
         
         def test_check_password(self):
-            pass
+            self.assertNotEqual(self.password, None)
+            self.assertGreater(len(self.password), 6)
             
         def test_check_phone_number(self):
-            pass
+            self.assertTrue(self.phoneNumber.isdigit())
+            self.assertNotEqual(self.password, None)
+            self.assertGreaterEqual(len(self.password), 10)
         
         def test_name(self):
-            pass
+            regex = re.compile(r'[@_!#$%^&*()123456789<>?/\|}{~:]')
+            self.assertNotRegex(self.firstName, regex)
+            self.assertNotEqual(self.firstName, None)
+            
 
 
 if __name__ == "__main__":
